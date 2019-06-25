@@ -14,10 +14,18 @@
         android:text="A86ClStorefile"
         />
     <EditText
+        android:id="@+id/editText"
         android:textSize="28sp"
         android:layout_below="@id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
+    <Button
+        android:id="@+id/button"
+        android:text="@android:string/ok"
+        android:layout_below="@id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
