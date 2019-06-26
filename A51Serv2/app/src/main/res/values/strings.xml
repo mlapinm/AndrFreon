@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">A51Serv2</string>
+    <string name="rates_url">http://www.cbr.ru/scripts/XML_daily.asp</string>
+</resources>
