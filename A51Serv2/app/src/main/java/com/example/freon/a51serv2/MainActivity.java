@@ -54,6 +54,7 @@ public class MainActivity extends ListActivity {
         ArrayList<Map<String, String>> list =
                 new ArrayList<Map<String, String>>();
         Map<String, String> m;
+        String string22=getString(R.string.rates_url);
         try {
 // Создаем объект URL
             URL url = new URL(getString(R.string.rates_url));
@@ -62,67 +63,56 @@ public class MainActivity extends ListActivity {
                     (HttpURLConnection) url.openConnection();
 // Получаем от сервера код ответа
             int responseCode = httpConnection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                string22="HttpURLConnection.HTTP_OK";
+            }
 // Если код ответа хороший, парсим поток(ответ сервера),
 // устанавливаем дату в заголовке приложения и
 // заполняем list нужными Map'ами
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                InputStream in = httpConnection.getInputStream();
-                DocumentBuilderFactory dbf = DocumentBuilderFactory
-                        .newInstance();
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                Document dom = db.parse(in);
-                Element docElement = dom.getDocumentElement();
-                String date = docElement.getAttribute("Date");
-                setTitle(getTitle() + " на " + date);
-                NodeList nodeList = docElement
-                        .getElementsByTagName("Valute");
-                int count = nodeList.getLength();
-                if (nodeList != null && nodeList.getLength() > 0) {
-                    for (int i = 0; i < count; i++) {
-                        Element entry = (Element) nodeList
-                                .item(i);
-                        m = new HashMap<String, String>();
-                        String charCode = entry
-                                .getElementsByTagName(KEY_CHAR_CODE)
-                                .item(0).getFirstChild()
-                                .getNodeValue();
-                        String value = entry
-                                .getElementsByTagName(KEY_VALUE)
-                                .item(0).getFirstChild()
-                                .getNodeValue();
-                        String nominal = "за " + entry
-                                .getElementsByTagName(KEY_NOMINAL)
-                                .item(0).getFirstChild()
-                                .getNodeValue();
-                        String name = entry
-                                .getElementsByTagName(KEY_NAME)
-                                .item(0).getFirstChild()
-                                .getNodeValue();
-                        m.put(KEY_CHAR_CODE, charCode);
-                        m.put(KEY_VALUE, value);
-                        m.put(KEY_NOMINAL, nominal);
-                        m.put(KEY_NAME, name);
-                        list.add(m);
-                    }
-                }
-            } else {
-                Toast.makeText(this,"OOPS! Somthing went wrong :(",Toast.LENGTH_LONG).show();
-// Сделать извещения об ошибках, если код ответа
-// нехороший
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            Toast.makeText(this,"OOPS! Somthing went wrong :(",Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this,"OOPS! Somthing went wrong :(",Toast.LENGTH_LONG).show();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            Toast.makeText(this,"OOPS! Somthing went wrong :(",Toast.LENGTH_LONG).show();
-        } catch (SAXException e) {
-            e.printStackTrace();
-            Toast.makeText(this,"OOPS! Somthing went wrong :(",Toast.LENGTH_LONG).show();
         }
+        catch (Exception e){
+
+        }
+        m = new HashMap<String, String>();
+        m.put(KEY_CHAR_CODE, "AUD");
+        m.put(KEY_VALUE, "43,8528");
+        m.put(KEY_NOMINAL, "1");
+
+        m.put(KEY_NAME, string22);
+        list.add(m);
+        list.add(m);
+        return list;
+
+    }
+
+
+    private ArrayList<Map<String, String>> getData2() {
+        ArrayList<Map<String, String>> list =
+                new ArrayList<Map<String, String>>();
+        Map<String, String> m;
+        m = new HashMap<String, String>();
+        m.put(KEY_CHAR_CODE, "AUD");
+        m.put(KEY_VALUE, "43,8528");
+        m.put(KEY_NOMINAL, "1");
+
+        m.put(KEY_NAME, "Австралийский доллар");
+        list.add(m);
+        list.add(m);
+        return list;
+    }
+
+    private ArrayList<Map<String, String>> getData3() {
+        ArrayList<Map<String, String>> list =
+                new ArrayList<Map<String, String>>();
+        Map<String, String> m;
+        m = new HashMap<String, String>();
+        m.put(KEY_CHAR_CODE, "AUD");
+        m.put(KEY_VALUE, "43,8528");
+        m.put(KEY_NOMINAL, "1");
+
+        m.put(KEY_NAME, "Австралийский доллар");
+        list.add(m);
+        list.add(m);
         return list;
     }
 }
