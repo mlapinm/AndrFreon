@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,13 +25,17 @@ public class DialogFragment1 extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //which содержит индекс выбранного элемента списка
+                                Intent intent = new Intent(MainActivity.ACTION_ENGINE_SELECTED);
+                                intent.putExtra(MainActivity.KEY_IDX, which);
+                                getActivity().sendBroadcast(intent);
+
+                                /*
                                 Activity activity = getActivity();
                                 if (activity instanceof BrowserCall){
                                     ((BrowserCall)activity).callBrowser(which);
                                 }else {
                                     Toast.makeText(activity, "Sory, unable to call Browser ",Toast.LENGTH_LONG).show();
-
-                                }
+                                }*/
                             }
                         });
         return builder.create();
