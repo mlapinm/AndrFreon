@@ -68,6 +68,8 @@ public class MyCoolService extends Service {
         builder.setContentText("" + mString + " " + mCounter);
         builder.setSmallIcon(android.R.drawable.stat_sys_warning);
         builder.setContentIntent(mPendingIntent);
+        builder.addAction(android.R.drawable.sym_action_email,"email",mPendingIntent);
+        builder.addAction(android.R.drawable.sym_action_call,"call",mPendingIntent);
 
         Notification notification = builder.build();
 

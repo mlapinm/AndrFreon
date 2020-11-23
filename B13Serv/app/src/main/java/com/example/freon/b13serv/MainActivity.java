@@ -18,14 +18,11 @@ public class MainActivity extends AppCompatActivity {
         mEditText = findViewById(R.id.editText);
         mEditText.setText("123");
 
-        Intent intent = new Intent(MainActivity.this, MyCoolService.class);
-        String string = mEditText.getText().toString();
-        intent.putExtra(MyCoolService.KEY_TEXT,string);
-        startService(intent);
-
     }
 
     public void onClick(View view) {
         Log.d("happy", "onClick");
+        Intent intent2 = new Intent("my.cool.broadcast");
+        sendBroadcast(intent2);
     }
 }
